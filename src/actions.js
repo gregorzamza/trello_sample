@@ -6,12 +6,12 @@ export const REMOVE_TODOLIST = 'REMOVE_TODOLIST'
 export const ADD_TODOBOARD = 'ADD_TODOBOARD'
 export const REMOVE_TODOBOARD = 'REMOVE_TODOBOARD'
 
-export function addTodo(text){
-  return {type: ADD_TODO, payload: {text}, error: false};
+export function addTodo(text, parentId){
+  return {type: ADD_TODO, payload: {text, parentId}, error: false};
 }
 
-export function addTodoList(text){
-  return {type: ADD_TODOLIST, payload: {text}, error: false};
+export function addTodoList(text, parentId){
+  return {type: ADD_TODOLIST, payload: {text, parentId}, error: false};
 }
 
 export function toggleTodo(id){
