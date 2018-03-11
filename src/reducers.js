@@ -7,7 +7,7 @@ function boards(state = [], action){
     case ADD_TODOBOARD:
       return [
         ...state,
-        { id : state.length, text : action.payload.text, lists: [] }
+        { id : action.payload.id, text : action.payload.text}
       ]
     case REMOVE_TODOBOARD:
       return [
@@ -23,7 +23,7 @@ function lists(state = [], action){
     case ADD_TODOLIST:      
       return [
         ...state,
-        { id : state.length, text : action.payload.text, parentId : action.payload.parentId, todos: [] }
+        { id : action.payload.id, text : action.payload.text, parentId : action.payload.parentId}
       ]
     case REMOVE_TODOLIST:
       return [
@@ -39,12 +39,12 @@ function todos(state = [], action){
     case ADD_TODO:
       return [
         ...state,
-        { id : state.length, text : action.payload.text, parentId : action.payload.parentId, completed : false }
+        { id : action.payload.id, text : action.payload.text, parentId : action.payload.parentId, completed : false }
       ]
     case TOGGLE_TODO:
       return [
-        ...state.map((todo, index) => {
-          if (todo.id === index){
+        ...state.map((todo) => {
+          if (todo.id === action.payload.id){
             return Object.assign({}, todo, {
               completed: !todo.completed
             })

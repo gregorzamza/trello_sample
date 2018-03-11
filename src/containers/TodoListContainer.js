@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { addTodo, removeTodo, toggleTodo } from '../actions';
 import TodoList from '../components/TodoList'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   return {
-    todos : state.todos,
+    todos : state.todos.filter(todo => todo.parentId === props.id)
   }
 }
 
@@ -16,8 +16,8 @@ const mapDispatchToProps = dispatch => (
     onRemoveTodoClick: id => {
       dispatch(removeTodo(id));
     },
-    onAddTodoClick: () => {
-      dispatch(addTodo("hello"));
+    onAddTodoClick: (parentId) => {
+      dispatch(addTodo("hello", parentId));
     }
   }
 )

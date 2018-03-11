@@ -6,12 +6,16 @@ export const REMOVE_TODOLIST = 'REMOVE_TODOLIST'
 export const ADD_TODOBOARD = 'ADD_TODOBOARD'
 export const REMOVE_TODOBOARD = 'REMOVE_TODOBOARD'
 
+let nextBoardId = 0;
+let nextListId = 0;
+let nextTodoId = 0;
+
 export function addTodo(text, parentId){
-  return {type: ADD_TODO, payload: {text, parentId}, error: false};
+  return {type: ADD_TODO, payload: {id : nextTodoId++, text, parentId}, error: false};
 }
 
 export function addTodoList(text, parentId){
-  return {type: ADD_TODOLIST, payload: {text, parentId}, error: false};
+  return {type: ADD_TODOLIST, payload: {id : nextListId++, text, parentId}, error: false};
 }
 
 export function toggleTodo(id){
@@ -27,7 +31,7 @@ export function removeTodoList(id){
 }
 
 export function addTodoBoard(text){
-  return {type: ADD_TODOBOARD, payload: {text}, error: false};
+  return {type: ADD_TODOBOARD, payload: {id : nextBoardId++, text}, error: false};
 }
 
 export function removeTodoBoard(id){
