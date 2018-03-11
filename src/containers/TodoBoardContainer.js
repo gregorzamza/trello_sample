@@ -1,16 +1,17 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { addTodoList, removeTodoList } from '../actions';
 import TodoBoard from '../components/TodoBoard';
 
 const mapToStateProps = state => {
-  lists
+  return {
+    lists : state.lists
+  }  
 }
 
 const mapToDispatchProps = dispatch => (
   {
-    onListAddClick: () => {
-      dispatch(addTodoList("hello list"));
+    onAddTodoListClick: () => {
+      dispatch(addTodoList("hello list", 1));
     },
     onRemoveTodoListClick: (id) => {
       dispatch(removeTodoList(id));

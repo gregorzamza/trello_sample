@@ -1,10 +1,12 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo, removeTodo, toggleTodo } from '../actions';
+import TodoList from '../components/TodoList'
 
-const mapStateToProps = state => (
-  todos, onRemoveTodoListClick
-)
+const mapStateToProps = state => {
+  return {
+    todos : state.todos,
+  }
+}
 
 const mapDispatchToProps = dispatch => (
   {
