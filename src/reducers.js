@@ -1,69 +1,70 @@
 import {ADD_TODO, ADD_TODOLIST, REMOVE_TODO, REMOVE_TODOLIST, 
   TOGGLE_TODO, ADD_TODOBOARD, REMOVE_TODOBOARD} from "./actions";
-
-const initialState = {
-  entities : {
-    boards: [],
-    lists: [],
-    todos: [],
-  }    
-}
+import {combineReducers} from 'redux';
 
 function boards(state = [], action){
   switch (action.type){
     case ADD_TODOBOARD:
-      let board = { id : state.length, text : action.payload.text }
-      return {
+      return [
         ...state,
-        board
-      }
+        { id : state.length, text : action.payload.text, lists: [] }
+      ]
     case REMOVE_TODOBOARD:
-      return {
+      return [
         ...state.filter(board => board.id !== action.payload.id)
-      }
+      ]
+    default:
+      return state
   }
 }
 
 function lists(state = [], action){
   switch (action.type){
-    case ADD_TODOLIST:
-      let list = { id : state.length, text : action.payload.text }
-      return {
+    case ADD_TODOLIST:      
+      return [
         ...state,
-        list
-      }
+        { id : state.length, text : action.payload.text, parentId : action.payload.parentId, todos: [] }
+      ]
     case REMOVE_TODOLIST:
-      return {
+      return [
         ...state.filter(list => list.id !== action.payload.id)
-      }
+      ]
+    default:
+      return state
   }
 }
 
 function todos(state = [], action){
   switch (action.type){
     case ADD_TODO:
-      let todo = { id : state.length, text : action.payload.text }
-      return {
+      return [
         ...state,
-        todo
-      }
+        { id : state.length, text : action.payload.text, parentId : action.payload.parentId, completed : false }
+      ]
     case TOGGLE_TODO:
-      return {
+      return [
         ...state.map((todo, index) => {
           if (todo.id === index){
-            return {
-              ...todo,
-              completed = !todo.completed,
-            }
+            return Object.assign({}, todo, {
+              completed: !todo.completed
+            })
           }
           return todo;
         })
-      }
+      ]
     case REMOVE_TODO:
-      return {
+      return [
         ...state.filter(todo => todo.id !== action.payload.id)
-      }
+      ]
     default:
       return state;
   }
 }
+
+const todoApp = combineReducers({
+  boards,
+  lists,
+  todos
+})
+
+export default todoApp;

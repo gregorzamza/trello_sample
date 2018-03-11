@@ -1,17 +1,20 @@
 import React from "react";
 import PropTypes from 'prop-types'
-import TodoList from "./TodoList";
+import TodoListContainer from "../containers/TodoListContainer";
 
-const TodoBoard = ({lists, name, onAddTodoListClick, onRemoveTodoListClick}) => (
-  lists.map((list) => (
-    <div key={list.id}>
-      <h4 onClick={onAddTodoListClick}>Add list</h4>
-      {name}
-      <TodoList {...list}
-        onRemoveTodoListClick={() => onRemoveTodoListClick(list.id)} 
-      />
-    </div>
-  ))
+const TodoBoard = ({lists, text, onAddTodoListClick, onRemoveTodoListClick, onRemoveTodoBoardClick}) => (
+  <div>
+    <h3 onClick={onRemoveTodoBoardClick}>Remove board</h3>
+    {text}
+    <h4 onClick={onAddTodoListClick}>Add list</h4>
+    {lists.map((list) => (
+      <div key={list.id}>
+        <TodoListContainer {...list}
+          onRemoveTodoListClick={() => onRemoveTodoListClick(list.id)} 
+        />
+      </div>
+    ))}
+  </div>
 )
 
 TodoBoard.propTypes = {
@@ -24,13 +27,14 @@ TodoBoard.propTypes = {
           text: PropTypes.string.isRequired
         }).isRequired
       ).isRequired,
-      name: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired
     }).isRequired
   ).isRequired,
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  onListClick: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  onAddTodoListClick: PropTypes.func.isRequired,
+  onRemoveTodoBoardClick: PropTypes.func.isRequired,
+  onRemoveTodoListClick: PropTypes.func.isRequired,
 }
 
 export default TodoBoard

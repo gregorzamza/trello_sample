@@ -1,11 +1,21 @@
 import React from 'react';
 import {render} from 'react-dom';
-import TodoBoard from './components/TodoBoard';
+import BoardListContainer from './containers/BoardListContainer';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import todoApp from './reducers';
+
+let store = createStore(todoApp)
 
 class App extends React.Component {
   render () {
-    return <TodoBoard />
+    return <BoardListContainer />
   }
 }
 
-render(<App/>, document.getElementById('app'));
+render(
+  <Provider store={store}>
+    <App/>
+  </Provider>, 
+  document.getElementById('app')
+);
