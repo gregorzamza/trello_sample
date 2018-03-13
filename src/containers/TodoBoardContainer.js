@@ -3,8 +3,11 @@ import { addTodoList, removeTodoList } from '../actions';
 import TodoBoard from '../components/TodoBoard';
 
 const mapToStateProps = (state, props) => {
-  return {
-    lists : state.lists.filter(list => list.parentId === props.id)
+  const id = +props.match.params.id;
+  return {    
+    lists : state.lists.filter(list => list.parentId === id),
+    text : state.boards.find(board => board.id === id).text,
+    id : id,
   }
 }
 

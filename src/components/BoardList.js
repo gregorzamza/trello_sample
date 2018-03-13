@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types'
-import TodoBoardContainer from "../containers/TodoBoardContainer";
+import TodoBoardOverview from "./TodoBoardOverview";
 
 const BoardList = ({boards, onAddTodoBoardClick, onRemoveTodoBoardClick}) => (
   <div>
     <h3 onClick={onAddTodoBoardClick}>Add</h3>
     {boards.map((board) => (
       <div key={board.id}>
-        <TodoBoardContainer {...board}
+        <TodoBoardOverview {...board}
           onRemoveTodoBoardClick={() => onRemoveTodoBoardClick(board.id)}
         />
       </div>

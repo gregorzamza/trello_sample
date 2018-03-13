@@ -1,21 +1,18 @@
 import React from 'react';
 import {render} from 'react-dom';
-import BoardListContainer from './containers/BoardListContainer';
+import Root from './components/Root'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import todoApp from './reducers';
+import { BrowserRouter } from 'react-router-dom';
 
 let store = createStore(todoApp)
 
-class App extends React.Component {
-  render () {
-    return <BoardListContainer />
-  }
-}
-
-render(
+render(  
   <Provider store={store}>
-    <App/>
-  </Provider>, 
+    <BrowserRouter>
+      <Root/>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('app')
 );
