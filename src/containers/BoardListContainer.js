@@ -10,8 +10,8 @@ const mapToStateProps = state => {
 
 const mapToDispatchProps = dispatch => (
   {
-    onAddTodoBoardClick: () => {
-      dispatch(addTodoBoard("hello board"));
+    onAddTodoBoardClick: (name) => {
+      dispatch(addTodoBoard(name));
     },
     onRemoveTodoBoardClick: (id) => {
       dispatch(removeTodoBoard(id));
