@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import TodoListContainer from "../containers/TodoListContainer";
-import NewBoardForm from "./forms/NewBoardForm"
+import NewItemForm from "./forms/NewItemForm"
 
-const TodoBoard = ({lists, text, id, onAddTodoListClick, onRemoveTodoListClick}) => (
-  <div>    
+const field="listname";
+const label="List";
+
+const TodoBoard = ({lists, text, id, onAddTodoListClick, onRemoveTodoListClick}) => (  
+  <div>
     {text}
-    <NewListForm onSubmit={(values) => {
-      onAddTodoListClick(values.boardName, id);
-      }}/>
+    <NewItemForm onSubmit={(values) => {
+      onAddTodoListClick(values[field], id);
+      }} name={field} label={label}/>
     {lists.map((list) => (
       <TodoListContainer key={list.id} {...list}
         onRemoveTodoListClick={() => onRemoveTodoListClick(list.id)} 

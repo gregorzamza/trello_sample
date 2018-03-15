@@ -4,11 +4,13 @@ import { Field, reduxForm } from 'redux-form'
 
 const validate = values => {
   const errors = {}
-  if (!values.boardName) {
-    errors.boardName = 'Required field'
+  if (!values[fieldName]) {
+    errors[fieldName] = 'Required field'
   }
   return errors;
 }
+
+let fieldName;
 
 const renderField = ({
   input,
@@ -26,12 +28,13 @@ const renderField = ({
   </div>
 )
 
-let NewListForm = props => {
-  const { handleSubmit } = props;
+let NewItemForm = props => {
+  const { handleSubmit, name, label } = props;
+  fieldName = name;
   return (
     <form onSubmit={handleSubmit}>
       <div>        
-        <Field name="listName" component={renderField} type="text" label="List" />
+        <Field name={name} component={renderField} type="text" label={label} />
       </div>
       <button type="submit">Add</button>
     </form>
@@ -45,13 +48,15 @@ renderField.propTypes = {
   meta: PropTypes.any,
 }
 
-NewListForm.propTypes = {
+NewItemForm.propTypes = {
   handleSubmit : PropTypes.func.isRequired,
+  name : PropTypes.string.isRequired,
+  label : PropTypes.string,
 }
 
-NewListForm = reduxForm({  
+NewItemForm = reduxForm({  
   form: 'newlist',
   validate
-})(NewListForm)
+})(NewItemForm)
 
-export default NewListForm
+export default NewItemForm
