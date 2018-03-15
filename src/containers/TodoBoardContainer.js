@@ -13,8 +13,8 @@ const mapToStateProps = (state, props) => {
 
 const mapToDispatchProps = dispatch => (
   {
-    onAddTodoListClick: (parentId) => {
-      dispatch(addTodoList("hello list", parentId));
+    onAddTodoListClick: (name, parentId) => {      
+      dispatch(addTodoList(name, parentId));
     },
     onRemoveTodoListClick: (id) => {
       dispatch(removeTodoList(id));

@@ -1,6 +1,7 @@
 import {ADD_TODO, ADD_TODOLIST, REMOVE_TODO, REMOVE_TODOLIST, 
   TOGGLE_TODO, ADD_TODOBOARD, REMOVE_TODOBOARD} from "./actions";
 import {combineReducers} from 'redux';
+import { reducer as formReducer } from 'redux-form'
 
 function boards(state = [], action){
   switch (action.type){
@@ -64,7 +65,8 @@ function todos(state = [], action){
 const todoApp = combineReducers({
   boards,
   lists,
-  todos
+  todos,
+  form: formReducer
 })
 
 export default todoApp;
