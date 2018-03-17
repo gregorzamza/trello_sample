@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
+import { Button } from 'react-bootstrap'
 
 const validate = values => {
   const errors = {}
@@ -32,11 +33,9 @@ let NewItemForm = props => {
   const { handleSubmit, name, label } = props;
   fieldName = name;
   return (
-    <form onSubmit={handleSubmit}>
-      <div>        
-        <Field name={name} component={renderField} type="text" label={label} />
-      </div>
-      <button type="submit">Add</button>
+    <form onSubmit={handleSubmit}>      
+      <Field name={name} component={renderField} type="text" label={label} />      
+      <Button type="submit">Add</Button>
     </form>
   )
 }
