@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import TodoBoardOverview from "./TodoBoardOverview";
-import NewItemForm from "./forms/NewItemForm"
+import NewItemFormHolder from "./forms/NewItemFormHolder.jsx"
 
 const field="boardName";
 const label="Board";
 
 const BoardList = ({boards, onAddTodoBoardClick, onRemoveTodoBoardClick}) => (
   <div>
-    <NewItemForm onSubmit={(values) => {
-        onAddTodoBoardClick(values[field]);
-        }} name={field} label={label}/>
+    <NewItemFormHolder onItemAdd={onAddTodoBoardClick} name={field} label={label}/>
     {boards.map((board) => (
       <div key={board.id}>
         <TodoBoardOverview {...board}
