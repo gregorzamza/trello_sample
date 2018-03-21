@@ -36,7 +36,7 @@ let NewItemForm = props => {
     <form onSubmit={handleSubmit}>      
       <Field name={name} component={renderField} type="text" label={label} />      
       <Button type="submit">Add</Button>
-      <Button onClick={onCancelClick}>Cancel</Button>
+      {onCancelClick ? <Button onClick={onCancelClick}>Cancel</Button> : null}
     </form>
   )
 }
@@ -52,7 +52,7 @@ NewItemForm.propTypes = {
   handleSubmit : PropTypes.func.isRequired,
   name : PropTypes.string.isRequired,
   label : PropTypes.string,
-  onCancelClick : PropTypes.func.isRequired,
+  onCancelClick : PropTypes.func,
 }
 
 NewItemForm = reduxForm({  

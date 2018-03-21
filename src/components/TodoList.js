@@ -1,12 +1,18 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import Todo from "./Todo";
+import NewItemForm from "./forms/NewItemForm"
+
+const field = "todoname"
 
 const TodoList = ({todos, text, id, onRemoveTodoListClick, onRemoveTodoClick, onAddTodoClick, onToggleTodoClick}) => (
   <ul>
     <h3 onClick={onRemoveTodoListClick}>Delete</h3>
     <h5>{text}</h5>
-    <h4 onClick={() => onAddTodoClick(id)}>Add todo</h4>
+    <NewItemForm onSubmit={(values) => {
+          onAddTodoClick(values[field], id);
+          }} name={field}
+    />
     {todos.map((todo) => (
       <Todo key={todo.id} {...todo} 
         onToggleClick={() => onToggleTodoClick(todo.id)}
