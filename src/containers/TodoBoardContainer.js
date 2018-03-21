@@ -11,16 +11,10 @@ const mapToStateProps = (state, props) => {
   }
 }
 
-const mapToDispatchProps = dispatch => (
-  {
-    onAddTodoListClick: (name, parentId) => {      
-      dispatch(addTodoList(name, parentId));
-    },
-    onRemoveTodoListClick: (id) => {
-      dispatch(removeTodoList(id));
-    }
-  }
-)
+const mapToDispatchProps = {
+  onAddTodoListClick: addTodoList,
+  onRemoveTodoListClick: removeTodoList,
+}
 
 const TodoBoardContainer = connect(
   mapToStateProps,

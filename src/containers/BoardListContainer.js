@@ -8,16 +8,10 @@ const mapToStateProps = state => {
   }
 }
 
-const mapToDispatchProps = dispatch => (
-  {
-    onAddTodoBoardClick: (name) => {
-      dispatch(addTodoBoard(name));
-    },
-    onRemoveTodoBoardClick: (id) => {
-      dispatch(removeTodoBoard(id));
-    }
-  }
-)
+const mapToDispatchProps = {
+  onAddTodoBoardClick: addTodoBoard,
+  onRemoveTodoBoardClick: removeTodoBoard,
+}
 
 const BoardListContainer = connect(
   mapToStateProps,

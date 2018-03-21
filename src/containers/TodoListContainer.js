@@ -8,19 +8,11 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-const mapDispatchToProps = dispatch => (
-  {
-    onToggleTodoClick: id => {
-      dispatch(toggleTodo(id));
-    }, 
-    onRemoveTodoClick: id => {
-      dispatch(removeTodo(id));
-    },
-    onAddTodoClick: (parentId) => {
-      dispatch(addTodo("hello", parentId));
-    }
-  }
-)
+const mapDispatchToProps = {
+  onToggleTodoClick : toggleTodo,
+  onRemoveTodoClick : removeTodo,
+  onAddTodoClick : addTodo,
+}
 
 const TodoListContainer = connect(
   mapStateToProps,
