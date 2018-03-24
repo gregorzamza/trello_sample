@@ -1,0 +1,42 @@
+// Required
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.global-container {
+    @include make-container;
+    align-items: center;
+    padding-top: 20vh;
+}
+
+.board-list {
+    @include make-row();
+
+    .board-overview {
+
+        @include media-breakpoint-up(xs) {
+            @include make-col(6);
+        }
+
+        @include media-breakpoint-up(sm) {
+            @include make-col(3);
+        }        
+
+        min-height: 20vh;
+
+        border-radius: 6px;
+        background-color: #d5e1df;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        cursor: pointer;
+
+        &--green {
+            background-color: #b5e7a0;
+        }
+
+        &__board-name {
+            font-size: 14px;
+        }
+    }
+}

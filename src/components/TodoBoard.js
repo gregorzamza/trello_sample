@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import TodoListContainer from "../containers/TodoListContainer";
 import NewItemFormHolder from "./forms/NewItemFormHolder.jsx"
 
-const field="listname";
+const field="list";
 const label="List";
 
 const TodoBoard = ({lists, text, id, onAddTodoListClick, onRemoveTodoListClick}) => (  

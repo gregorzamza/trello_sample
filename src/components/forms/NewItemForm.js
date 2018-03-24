@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
-import { Button } from 'react-bootstrap'
+import { Button } from 'reactstrap'
 
 const validate = values => {
   const errors = {}
@@ -19,8 +19,7 @@ const renderField = ({
   type,
   meta: { touched, error }
 }) => (
-  <div>
-    <label>{label}</label>
+  <div>    
     <div>
       <input {...input} placeholder={label} type={type} />
       {touched &&

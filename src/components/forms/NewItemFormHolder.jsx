@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import NewItemForm from './NewItemForm'
-import { Button } from 'react-bootstrap'
 
 class NewItemFormHolder extends React.Component {
   
@@ -10,7 +9,7 @@ class NewItemFormHolder extends React.Component {
     this.state = { showForm: false };
     this.onCancelClick = this.onCancelClick.bind(this);
     this.onAddNewClick = this.onAddNewClick.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);    
   }
 
   onCancelClick() {
@@ -27,14 +26,26 @@ class NewItemFormHolder extends React.Component {
   }
 
   render() {
-    return (
-      this.state.showForm ? 
-        <NewItemForm onSubmit={(values) => {
-          this.onSubmit(values[this.props.name], this.props.id);
-          }} onCancelClick={this.onCancelClick} name={this.props.name} label={this.props.label}
+
+    const initialView = 
+      <div onClick={this.onAddNewClick} className="board-overview board-overview--green">
+        Add new {this.props.name}
+      </div>
+
+    const input = 
+      <div className="board-overview board-overview--green">
+        <NewItemForm 
+          onSubmit={(values) => {
+            this.onSubmit(values[this.props.name], this.props.id);
+          }}
+          onCancelClick={this.onCancelClick} 
+          name={this.props.name} 
+          label={this.props.label}
         />
-        :
-        <Button onClick={this.onAddNewClick}>New</Button>
+      </div>
+
+    return (
+      this.state.showForm ? input : initialView      
     )
   }
 }

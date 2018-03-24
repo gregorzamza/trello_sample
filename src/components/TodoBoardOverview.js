@@ -1,13 +1,32 @@
 import React from "react"
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
-const TodoBoardOverview = ({text, id, onRemoveTodoBoardClick}) => (
-  <div>
-    <h3 onClick={onRemoveTodoBoardClick}>Remove board</h3>
-    <Link to={`/board/${id}`}>{text}</Link>
-  </div>
-)
+class TodoBoardOverview extends React.Component{    
+
+  constructor(props){
+    super(props);
+    this.state = {redirect: false};
+    this.onContainerClick = this.onContainerClick.bind(this);
+  }  
+
+  onContainerClick(){
+    this.setState({redirect: true});
+  }
+
+  render() {
+    if (this.state.redirect){
+      return <Redirect push to={`/board/${this.props.id}`} />
+    }
+
+    return (
+      <div className="board-overview" onClick={this.onContainerClick}>
+        <h3 className="board-overview__remove-button" onClick={this.props.onRemoveTodoBoardClick}>Remove board</h3>
+        <p className="board-overview__board-name">{this.props.text}</p>
+      </div>
+    )
+  }
+}
 
 TodoBoardOverview.propTypes = {
   text: PropTypes.string.isRequired,

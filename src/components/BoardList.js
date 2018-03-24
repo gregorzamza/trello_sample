@@ -3,18 +3,16 @@ import PropTypes from 'prop-types'
 import TodoBoardOverview from "./TodoBoardOverview";
 import NewItemFormHolder from "./forms/NewItemFormHolder.jsx"
 
-const field="boardName";
-const label="Board";
+const field="board";
+const label="Board Name";
 
 const BoardList = ({boards, onAddTodoBoardClick, onRemoveTodoBoardClick}) => (
-  <div>
-    <NewItemFormHolder onItemAdd={onAddTodoBoardClick} name={field} label={label}/>
+  <div className="board-list">
+    <NewItemFormHolder onItemAdd={onAddTodoBoardClick} name={field} label={label}/>    
     {boards.map((board) => (
-      <div key={board.id}>
-        <TodoBoardOverview {...board}
-          onRemoveTodoBoardClick={() => onRemoveTodoBoardClick(board.id)}
-        />
-      </div>
+      <TodoBoardOverview key={board.id} {...board}
+        onRemoveTodoBoardClick={() => onRemoveTodoBoardClick(board.id)}
+      />
     ))}
   </div>
 )
