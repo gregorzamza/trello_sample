@@ -27,25 +27,23 @@ class NewItemFormHolder extends React.Component {
 
   render() {
 
-    const initialView = 
-      <div onClick={this.onAddNewClick} className="board-overview board-overview--green">
-        Add new {this.props.name}
-      </div>
+    const initialView = <p className="board-overview__board-name">Add new {this.props.name}</p>      
 
-    const input = 
-      <div className="board-overview board-overview--green">
-        <NewItemForm 
+    const input =       
+        <NewItemForm
           onSubmit={(values) => {
             this.onSubmit(values[this.props.name], this.props.id);
           }}
           onCancelClick={this.onCancelClick} 
           name={this.props.name} 
           label={this.props.label}
-        />
-      </div>
+        />      
 
     return (
-      this.state.showForm ? input : initialView      
+      <div onClick={this.state.showForm ? null : this.onAddNewClick} 
+        className="board-overview board-overview--light board-overview--centered">
+        {this.state.showForm ? input : initialView}
+      </div>
     )
   }
 }

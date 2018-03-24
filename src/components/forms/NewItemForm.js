@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
-import { Button } from 'reactstrap'
+import { Popover, PopoverBody, Button } from 'reactstrap'
 
 const validate = values => {
   const errors = {}
@@ -19,12 +19,15 @@ const renderField = ({
   type,
   meta: { touched, error }
 }) => (
-  <div>    
-    <div>
-      <input {...input} placeholder={label} type={type} />
+  <div className="item-form__input-container">
+    <input id="name-input" className="form-control item-form__input-container__input" 
+      {...input} placeholder={label} type={type} 
+    />
       {touched &&
-        (error && <span>{error}</span>)}
-    </div>
+        (error && 
+        <Popover placement="right" isOpen={true} target="name-input">
+          <PopoverBody>Required field</PopoverBody>
+        </Popover>)}
   </div>
 )
 
@@ -32,11 +35,15 @@ let NewItemForm = props => {
   const { handleSubmit, onCancelClick, name, label } = props;
   fieldName = name;
   return (
-    <form onSubmit={handleSubmit}>      
-      <Field name={name} component={renderField} type="text" label={label} />      
-      <Button type="submit">Add</Button>
-      {onCancelClick ? <Button onClick={onCancelClick}>Cancel</Button> : null}
-    </form>
+    <div className="form-container">
+      <form className="item-form" onSubmit={handleSubmit}>      
+        <Field name={name} component={renderField} type="text" label={label} />
+        <div className="item-form__button-container">
+          <Button className="item-form__button" outline color="success" type="submit">Add</Button>
+          <Button className="item-form__button" outline color="success" onClick={onCancelClick}>Cancel</Button>
+        </div>      
+      </form>
+    </div>
   )
 }
 

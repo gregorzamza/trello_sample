@@ -7,7 +7,7 @@ const field="board";
 const label="Board Name";
 
 const BoardList = ({boards, onAddTodoBoardClick, onRemoveTodoBoardClick}) => (
-  <div className="board-list">
+  <div className="board-list">    
     <NewItemFormHolder onItemAdd={onAddTodoBoardClick} name={field} label={label}/>    
     {boards.map((board) => (
       <TodoBoardOverview key={board.id} {...board}

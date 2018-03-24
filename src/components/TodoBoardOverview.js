@@ -21,8 +21,13 @@ class TodoBoardOverview extends React.Component{
 
     return (
       <div className="board-overview" onClick={this.onContainerClick}>
-        <h3 className="board-overview__remove-button" onClick={this.props.onRemoveTodoBoardClick}>Remove board</h3>
-        <p className="board-overview__board-name">{this.props.text}</p>
+        <div className="board-overview__remove-icon-container">
+          <span onClick={this.props.onRemoveTodoBoardClick} className="oi board-overview__remove-icon"
+            data-glyph="x" title="Remove board" aria-hidden="true"></span>
+        </div>
+        <div className="board-overview__board-name-container--centered">
+          <p className="board-overview__board-name">{this.props.text}</p>
+        </div>
       </div>
     )
   }
