@@ -12,7 +12,20 @@
 .global-container {
     @include make-container();
     align-items: center;
-    padding-top: 20vh;
+    padding-top: 10vh;
+
+    .main-menu-link {
+
+        @include center-component();
+        margin-bottom: 10vh;
+        cursor: pointer;
+        
+
+        &__link {
+            text-decoration: none;
+            color: black;
+        }
+    }
 }
 
 .board-list {
@@ -23,7 +36,7 @@
 
     @include center-component();
 
-    .board-overview {        
+    .board-overview, .item-overview {        
 
         @include media-breakpoint-up(xs) {
             @include make-col(6);
@@ -41,7 +54,7 @@
 
         border-radius: 6px;
         background-color: #b5e7a0;
-        margin: 15px;        
+        margin: 15px;
 
         cursor: pointer;
 
@@ -49,7 +62,7 @@
             background-color: #d5e1df;
         }
 
-        &__board-name {
+        &__board-name, .item-form-holder__item-name {
             font-size: 20px;
         }
 
@@ -85,6 +98,9 @@
     padding: 0px;
 
     .item-form {    
+
+        margin: 0px;
+
         &__button {
             margin: 10px;
         }
@@ -99,4 +115,132 @@
             @include center-component();
         }
     }
+}
+
+.todo-board {
+    @include make-container();
+
+    &__name-container {
+        @include make-container();
+        @include center-component();
+    }    
+
+    &__board-name {
+        font-size: 20px;
+    }
+
+    &__content-container {
+        @include make-container();
+        align-items: center;        
+    }
+
+    &__lists-row {
+        @include make-row();
+        @include center-component();
+
+        
+        .todo-list, .item-overview {
+            @include media-breakpoint-up(xs) {
+                @include make-col(6);
+            }
+    
+            @include media-breakpoint-up(sm) {
+                @include make-col(4);
+            }
+    
+            @include media-breakpoint-up(lg) {
+                @include make-col(3);
+            }            
+    
+            border-radius: 6px;
+            background-color: #b5e7a0;
+            margin: 15px;
+
+            min-height: 20vh;            
+    
+            &--light {
+                background-color: #d5e1df;
+            }
+
+            &__list-name, .item-form-holder__item-name {
+                font-size: 20px;
+            }
+
+            &--centered{
+                @include center-component();
+            }
+
+            &__remove-icon-container {
+                @include make-container();
+                padding: 5px;
+            }
+    
+            &__remove-icon {
+                @include float-right;
+                transition: all .1s ease-in-out;
+    
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+
+            &__content-container {
+                @include make-container();
+                padding: 0px;
+
+                &__list-name-container {
+                    @include make-container();
+                    @include center-component();
+
+                    margin-bottom: 10px;
+                    border-bottom: antiquewhite 1px solid;
+                }
+
+                &__list-name {
+                    font-size: 20px;
+                }
+
+                &__todos-container {
+                    @include make-container();                    
+
+                    .todo {
+                        @include make-container();
+
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+
+                        &__content-row{
+                            @include make-row();
+                            @include center-component();
+                        }
+
+                        &__task-column{
+                            @include make-col(10);
+                            @include center-component();
+                        }
+
+                        &__remove-icon-column{                            
+                            @include make-col(2);
+                            @include center-component();
+                        }
+
+                        &__remove-icon-container{
+                            @include make-container();
+                        }
+                
+                        &__remove-icon {
+                            @include float-right;
+                            cursor: pointer;
+                        }
+
+                        &__todo-text {
+                            font-size: 16px;
+                            margin: 0px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }    
 }

@@ -1,25 +1,39 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import Todo from "./Todo";
-import NewItemForm from "./forms/NewItemForm"
+import NewTodoForm from "./forms/NewTodoForm"
 
-const field = "todoname"
+const field = "todo"
+const label = "Todo name"
 
 const TodoList = ({todos, text, id, onRemoveTodoListClick, onRemoveTodoClick, onAddTodoClick, onToggleTodoClick}) => (
-  <ul>
-    <h3 onClick={onRemoveTodoListClick}>Delete</h3>
-    <h5>{text}</h5>
-    <NewItemForm onSubmit={(values) => {
-          onAddTodoClick(values[field], id);
-          }} name={field}
-    />
-    {todos.map((todo) => (
-      <Todo key={todo.id} {...todo} 
-        onToggleClick={() => onToggleTodoClick(todo.id)}
-        onRemoveClick={() => onRemoveTodoClick(todo.id)} 
-      />
-    ))}
-  </ul>
+  <div className='todo-list'>    
+      <div className="todo-list__remove-icon-container">
+          <span onClick={onRemoveTodoListClick} className="oi todo-list__remove-icon"
+            data-glyph="x" title="Remove list" aria-hidden="true"></span>
+      </div>
+      <div className="todo-list__content-container">
+        <div className="todo-list__content-container__list-name-container">
+          <p className="todo-list__content-container__list-name">{text}</p>
+        </div>
+        <div className="todo-list__content-container__todos-container">
+          {todos.map((todo) => (
+            <Todo key={todo.id} {...todo} 
+              onToggleClick={() => onToggleTodoClick(todo.id)}
+              onRemoveClick={() => onRemoveTodoClick(todo.id)} 
+            />
+          ))}
+          <NewTodoForm 
+                onSubmit={(values) => {
+                  onAddTodoClick(values[field], id);
+                }} 
+                id={id}
+                name={field} 
+                label={label}                  
+          />          
+        </div>        
+      </div>      
+  </div>
 )
 
 TodoList.propTypes = {

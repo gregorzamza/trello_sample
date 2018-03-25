@@ -7,14 +7,20 @@ const field="list";
 const label="List";
 
 const TodoBoard = ({lists, text, id, onAddTodoListClick, onRemoveTodoListClick}) => (  
-  <div>
-    {text}
-    <NewItemFormHolder onItemAdd={onAddTodoListClick} name={field} label={label} id={id}/>
-    {lists.map((list) => (
-      <TodoListContainer key={list.id} {...list}
-        onRemoveTodoListClick={() => onRemoveTodoListClick(list.id)} 
-      />
-    ))}
+  <div className="todo-board">
+    <div className="todo-board__name-container">      
+      <p className="todo-board__board-name">{text}</p>      
+    </div>
+    <div className="todo-board__content-container">
+      <div className="todo-board__lists-row">
+        <NewItemFormHolder onItemAdd={onAddTodoListClick} name={field} label={label} id={id}/>
+        {lists.map((list) => (
+          <TodoListContainer key={list.id} {...list}
+            onRemoveTodoListClick={() => onRemoveTodoListClick(list.id)} 
+          />
+        ))}
+      </div>
+    </div>
   </div>
 )
 

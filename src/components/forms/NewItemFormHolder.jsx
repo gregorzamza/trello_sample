@@ -27,7 +27,7 @@ class NewItemFormHolder extends React.Component {
 
   render() {
 
-    const initialView = <p className="board-overview__board-name">Add new {this.props.name}</p>      
+    const initialView = <p className="item-form-holder__item-name">Add new {this.props.name}</p>      
 
     const input =       
         <NewItemForm
@@ -41,7 +41,7 @@ class NewItemFormHolder extends React.Component {
 
     return (
       <div onClick={this.state.showForm ? null : this.onAddNewClick} 
-        className="board-overview board-overview--light board-overview--centered">
+        className="item-overview item-overview--light item-overview--centered">
         {this.state.showForm ? input : initialView}
       </div>
     )
